@@ -64,7 +64,7 @@ export default () => {
         console.log("CPU picks", computerGesture);   //  TODO remove for prod
 
 
-        //  crazy logic for what beats the other/draws (thanks for twisting my lemon)
+        //  crazy logic for what beats the other/draws (thanks for twisting my lemon) TODO this can be cleaned up
         if (playerGesture === "rock" && computerGesture === "rock") {
             result = "draw!";
         } else if (playerGesture === "rock" && (computerGesture === "scissors" || computerGesture === "lizard")) {
@@ -173,10 +173,9 @@ export default () => {
         setGameResult(result);
     };
 
+
     if (result) return (
-        <div className={styles.container}>
-            <h1 className={styles.result}>{result}</h1>
-        </div>
+        <h1>TODO: show resultsContainer</h1>
     );
 
 
@@ -193,7 +192,6 @@ export default () => {
                     <p>Computer score: { score.computer }</p>
                 </div>
             </section>
-
         );
     }
 
