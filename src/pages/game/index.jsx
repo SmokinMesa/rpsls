@@ -1,7 +1,8 @@
 /*  NOTES
     -   Approx time once cloned/running 2hrs - 2.5hrs
     -   I've never used next.js before so didn't want to adjust project structure.
-        Normally I would use page folders with relevant stylesheet and would have a components folder following the same convention
+    -   Never used TypeScript or useReducer hook
+    -   Normally I would use page folders with relevant stylesheet and would have a components folder following the same convention
     -   I wouldn't normally have anonymous components but have left as is
     -   Style would sit around more global themes/variables but have followed the authors use here for brevity
     -   Not much of a UI/UX test here, style is added quickly and not usual standard
@@ -23,10 +24,23 @@ export default () => {
      */
     const [gameResult, setGameResult] = useState('');
 
-   const playGame = gesture => {
+
+    /**
+     * method to handle the api lookup/result
+     * @param gesture
+     */
+    const playGame = gesture => {
         let playerGesture = gesture;
         let result;
 
+        // // NOTE: not returning correctly and unfamiliar with why , have used logic below to make app work
+        // const data = play(gesture);
+        // result = data.result;
+        //
+        // forceUpdate();
+
+
+        //  following moved here to get it working
         const n = Math.floor(Math.random() * 5);    //  create a random number for the computer choice
 
         let computerChoices = [
@@ -80,13 +94,6 @@ export default () => {
 
         console.log("RESULT:", result);   //  TODO remove for prod
         setGameResult(result);
-
-
-        //  NOTE: not sure why this isn't working so moved logic (as above) to this file for testing
-        // const data = play(gesture);
-        // result = data.result;
-        //
-        // forceUpdate();
     };
 
     if (result) return (

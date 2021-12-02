@@ -13,11 +13,8 @@ export const playGame = ({ playerGesture }) => {
 
     const computerGesture = computerChoices[n];     //  randomise choice
 
-    console.log("PLAYER picks", playerGesture);
-    console.log("CPU picks", computerGesture);
 
-
-    //  crazy logic for what beats the other/draws (thanks for twisting my lemon)
+    //  crazy logic for what beats the other/draws, could use a switch (thanks for twisting my lemon)
     if (playerGesture === "rock" && computerGesture === "rock") {
         result = "draw!";
     } else if (playerGesture === "rock" && (computerGesture === "scissors" || computerGesture === "lizard")) {
@@ -49,7 +46,7 @@ export const playGame = ({ playerGesture }) => {
     } else if (playerGesture === "spock" && (computerGesture === "lizard " || computerGesture === "paper")) {
         result = "computer wins!";
     } else {
-        result = "Hmmmmm I think someone might be cheating, looks like a draw"
+        result = "Looks like another draw!"
     }
 
     return result;
