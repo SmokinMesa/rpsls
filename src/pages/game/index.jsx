@@ -24,6 +24,13 @@ export default () => {
      */
     const [gameResult, setGameResult] = useState('');
 
+    const [score, setScore] = useState(
+        {
+            "player": 0,
+            "computer": 0
+        }
+    )
+
 
     /**
      * method to handle the api lookup/result
@@ -62,32 +69,102 @@ export default () => {
             result = "draw!";
         } else if (playerGesture === "rock" && (computerGesture === "scissors" || computerGesture === "lizard")) {
             result = "player wins!";
+
+            setScore(prevState => {
+                return {
+                    ...prevState,
+                    "player": prevState.player + 1
+                }
+            });
         } else if (playerGesture === "rock" && (computerGesture === "paper" || computerGesture === "spock")) {
             result = "computer wins!";
+
+            setScore(prevState => {
+                return {
+                    ...prevState,
+                    "computer": prevState.computer + 1
+                }
+            });
         } else if (playerGesture === "paper" && computerGesture === "paper") {
             result = "draw!";
         } else if (playerGesture === "paper" && (computerGesture === "rock" || computerGesture === "spock")) {
             result = "player wins!";
+
+            setScore(prevState => {
+                return {
+                    ...prevState,
+                    "player": prevState.player + 1
+                }
+            });
         } else if (playerGesture === "paper" && (computerGesture === "scissors" || computerGesture === "lizard")) {
             result = "computer wins!";
+
+            setScore(prevState => {
+                return {
+                    ...prevState,
+                    "computer": prevState.computer + 1
+                }
+            });
         } else if (playerGesture === "scissors" && computerGesture === "scissors") {
             result = "draw!";
         } else if (playerGesture === "scissors" && (computerGesture === "paper" || computerGesture === "lizard")) {
             result = "player wins!";
+
+            setScore(prevState => {
+                return {
+                    ...prevState,
+                    "player": prevState.player + 1
+                }
+            });
         } else if (playerGesture === "scissors" && (computerGesture === "rock" || computerGesture === "spock")) {
             result = "computer wins!";
+
+            setScore(prevState => {
+                return {
+                    ...prevState,
+                    "computer": prevState.computer + 1
+                }
+            });
         } else if (playerGesture === "lizard" && computerGesture === "lizard") {
             result = "draw!";
         } else if (playerGesture === "lizard" && (computerGesture === "spock" || computerGesture === "paper")) {
             result = "player wins!";
+
+            setScore(prevState => {
+                return {
+                    ...prevState,
+                    "player": prevState.player + 1
+                }
+            });
         } else if (playerGesture === "lizard" && (computerGesture === "rock" || computerGesture === "scissors")) {
             result = "computer wins!";
+
+            setScore(prevState => {
+                return {
+                    ...prevState,
+                    "computer": prevState.computer + 1
+                }
+            });
         } else if (playerGesture === "spock" && computerGesture === "spock") {
            result = "draw!";
         } else if (playerGesture === "spock" && (computerGesture === "rock" || computerGesture === "scissors")) {
             result = "player wins!";
+
+            setScore(prevState => {
+                return {
+                    ...prevState,
+                    "player": prevState.player + 1
+                }
+            });
         } else if (playerGesture === "spock" && (computerGesture === "lizard " || computerGesture === "paper")) {
             result = "computer wins!";
+
+            setScore(prevState => {
+                return {
+                    ...prevState,
+                    "computer": prevState.computer + 1
+                }
+            });
         } else {
             result = "Looks like another draw!"
         }
@@ -108,9 +185,14 @@ export default () => {
      */
     const ResultContainer = () => {
         return (
-            <aside className={styles.result}>
+            <section className={styles.result}>
                 <h1>{gameResult}</h1>
-            </aside>
+
+                <div className={styles.scoreboard}>
+                    <p>Player score: { score.player }</p>
+                    <p>Computer score: { score.computer }</p>
+                </div>
+            </section>
 
         );
     }
@@ -133,6 +215,7 @@ export default () => {
             {
                 gameResult ? <ResultContainer /> : ''
             }
+
         </main>
     );
 }

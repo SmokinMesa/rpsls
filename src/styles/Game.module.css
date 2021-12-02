@@ -69,16 +69,19 @@
         margin: 0 5px;      /*  no context here to other elements that might exist so just giving some space   */
         padding: 12px 24px;     /*  TODO with resets/standardised styles along with global typography stylesheet, convert this to rem   */
         text-decoration: none;
+        text-transform: capitalize;
         transition: .3s;
     }
         @media screen and (max-width: 764px) {
             .options button {
+                display: flex;
                 margin: 5px 0;
+                width: 100%;
             }
         }
         /*  hover
         ============================================================================================================= */
-        .options button:not(:disabled):hover {
+        .options button:hover {
             background-color: #00a56f;
             color: #fff;
         }
@@ -94,7 +97,6 @@
 }
     .result h1 {
         animation: fadeAway 2s forwards;
-        /*animation-delay: 1s;*/
         border: 5px solid #fb6058;
         color: #fb6058;
         display: inline-block;
@@ -104,19 +106,26 @@
         text-transform: uppercase;
     }
 
-/*  TODO this would be in an animations file and global and probably use CSSTransitions not keyframes */
-@keyframes fadeAway {
-    0% {
-        opacity: 0;
-        transform: translateY(100px);
-    }
-    15%, 85% {
-        opacity: 1;
-        transform: translateY(0);
+    /*  TODO this would be in an animations file and global and probably use CSSTransitions not keyframes */
+    @keyframes fadeAway {
+        0% {
+            opacity: 0;
+            transform: translateY(100px);
+        }
+        15%, 85% {
+            opacity: 1;
+            transform: translateY(0);
 
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(100px);
+        }
     }
-    100% {
-        opacity: 0;
-        transform: translateY(100px);
-    }
-}
+
+        /*  show the scoreboard
+        ============================================================================================================  */
+        .scoreboard {
+            display: flex;
+            justify-content: space-between;
+        }
