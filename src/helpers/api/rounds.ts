@@ -1,37 +1,56 @@
 export const playGame = ({ playerGesture }) => {
-    let computerGesture;
     let result;
 
-    const n = Math.floor(Math.random() * 3);
+    const n = Math.floor(Math.random() * 3);     //  create a random number for the computer choice
 
-    switch(n) {
-        case 1:
-            computerGesture = "rock"
-        case 2:
-            computerGesture = "paper"
-        case 3:
-            computerGesture = "scissors"
-    }
+    let computerChoices = [
+        "rock",
+        "paper",
+        "scissors",
+        "lizard",
+        "spock"
+    ];
 
+    const computerGesture = computerChoices[n];     //  randomise choice
+
+    console.log("PLAYER picks", playerGesture);
+    console.log("CPU picks", computerGesture);
+
+
+    //  crazy logic for what beats the other/draws (thanks for twisting my lemon)
     if (playerGesture === "rock" && computerGesture === "rock") {
         result = "draw!";
-    } else if (playerGesture === "rock" && computerGesture === "paper") {
+    } else if (playerGesture === "rock" && (computerGesture === "scissors" || computerGesture === "lizard")) {
+        result = "player wins!";
+    } else if (playerGesture === "rock" && (computerGesture === "paper" || computerGesture === "spock")) {
         result = "computer wins!";
-    } else if  (playerGesture === "rock" && computerGesture === "scissors") {
-        result = "player wins!";
-    } else if (playerGesture === "paper" && computerGesture === "rock") {
-        result = "player wins!";
     } else if (playerGesture === "paper" && computerGesture === "paper") {
         result = "draw!";
-    } else if (playerGesture === "paper" && computerGesture === "scissors") {
-        result = "computer wins!";
-    } else if (playerGesture === "scissors" && computerGesture === "rock") {
-        result = "computer wins!";
-    } else if (playerGesture === "scissors" && computerGesture === "paper") {
+    } else if (playerGesture === "paper" && (computerGesture === "rock" || computerGesture === "spock")) {
         result = "player wins!";
-    } else {
+    } else if (playerGesture === "paper" && (computerGesture === "scissors" || computerGesture === "lizard")) {
+        result = "computer wins!";
+    } else if (playerGesture === "scissors" && computerGesture === "scissors") {
         result = "draw!";
-    };
+    } else if (playerGesture === "scissors" && (computerGesture === "paper" || computerGesture === "lizard")) {
+        result = "player wins!";
+    } else if (playerGesture === "scissors" && (computerGesture === "rock" || computerGesture === "spock")) {
+        result = "computer wins!";
+    } else if (playerGesture === "lizard" && computerGesture === "lizard") {
+        result = "draw!";
+    } else if (playerGesture === "lizard" && (computerGesture === "spock" || computerGesture === "paper")) {
+        result = "player wins!";
+    } else if (playerGesture === "lizard" && (computerGesture === "rock" || computerGesture === "scissors")) {
+        result = "computer wins!";
+    } else if (playerGesture === "spock" && computerGesture === "spock") {
+       result = "draw!";
+    } else if (playerGesture === "spock" && (computerGesture === "rock" || computerGesture === "scissors")) {
+        result = "player wins!";
+    } else if (playerGesture === "spock" && (computerGesture === "lizard " || computerGesture === "paper")) {
+        result = "computer wins!";
+    } else {
+        result = "Hmmmmm I think someone might be cheating, looks like a draw"
+    }
 
     return result;
 };

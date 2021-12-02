@@ -1,12 +1,122 @@
+/*
+    title: Game.modules
+    notes: for the paper/rock... game
+
+            *** I don't like/use frameworks such as BS/foundation etc so have not imported any  ***
+
+           NOTE, I don't usually write CSS this way, would normally have some master styles/theme/vars possibly leveraging modules
+             and pages/components would have styles within relevant folders with their main .js
+===================================================================================================================== */
+
+
+
+
+/*  site-width, used to set the main content area
+====================================================================================================================  */
+.sw {
+    font-family: "Sofia Pro", Helvetica, Arial, sans-serif;
+    margin: 0 auto;
+    width: 100%;
+}
+    /*  add some super basic container sizes (would be more global and separate usually) */
+    @media screen and (min-width: 440px) {
+        .sw {
+            width: 95vw;
+        }
+    }
+    @media screen and (min-width: 764px) {
+        .sw {
+            width: 760px;
+        }
+    }
+    @media screen and (min-width: 1400px) {
+        .sw {
+            width: 1400px;
+        }
+    }
+
+
+
+
+/*  options (buttons to start the game)
+====================================================================================================================  */
+.options {
+    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0
+}
+    @media screen and (max-width: 764px) {
+        .options {
+            flex-direction: column;
+        }
+    }
+
+    /* buttons
+    ================================================================================================================= */
+    .options button {
+        align-items: center;
+        background-color: transparent;
+        border: 1px solid #00a56f;
+        border-radius: 2px;
+        color: #00a56f;
+        cursor: pointer;
+        display: inline-flex;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1;
+        justify-content: center;
+        margin: 0 5px;      /*  no context here to other elements that might exist so just giving some space   */
+        padding: 12px 24px;     /*  TODO with resets/standardised styles along with global typography stylesheet, convert this to rem   */
+        text-decoration: none;
+        transition: .3s;
+    }
+        @media screen and (max-width: 764px) {
+            .options button {
+                margin: 5px 0;
+            }
+        }
+        /*  hover
+        ============================================================================================================= */
+        .options button:not(:disabled):hover {
+            background-color: #00a56f;
+            color: #fff;
+        }
+
+
+
+
+/*  results
+====================================================================================================================  */
 .result {
-  font-size: 3rem;
+    text-align: center;
+    margin: 0 auto;
 }
+    .result h1 {
+        animation: fadeAway 2s forwards;
+        /*animation-delay: 1s;*/
+        border: 5px solid #fb6058;
+        color: #fb6058;
+        display: inline-block;
+        letter-spacing: 2px;
+        margin: 0;
+        padding: 100px 6px 10px 6px;
+        text-transform: uppercase;
+    }
 
-.button {
-  font-size: 3rem;
-}
+/*  TODO this would be in an animations file and global and probably use CSSTransitions not keyframes */
+@keyframes fadeAway {
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    15%, 85% {
+        opacity: 1;
+        transform: translateY(0);
 
-.container {
-  width: 100vw;
-  height: 100vh;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
 }
