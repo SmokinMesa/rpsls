@@ -1,7 +1,9 @@
-export const playGame = ({ playerGesture }) => {
+export const playGame = (chosenGesture) => {
     let result;
+    let parseGesture = JSON.parse(chosenGesture);
+    let playerGesture = parseGesture.gesture;
 
-    const n = Math.floor(Math.random() * 3);     //  create a random number for the computer choice
+    const n = Math.floor(Math.random() * 5);     //  create a random number for the computer choice
 
     let computerChoices = [
         "rock",
@@ -13,8 +15,7 @@ export const playGame = ({ playerGesture }) => {
 
     const computerGesture = computerChoices[n];     //  randomise choice
 
-
-    //  crazy logic for what beats the other/draws, could use a switch (thanks for twisting my lemon)
+    //  logic for what beats the other/draws, could clean this (thanks for twisting my lemon)
     if (playerGesture === "rock" && computerGesture === "rock") {
         result = "draw!";
     } else if (playerGesture === "rock" && (computerGesture === "scissors" || computerGesture === "lizard")) {

@@ -36,18 +36,19 @@ export default () => {
      * method to handle the api lookup/result
      * @param gesture
      */
-    const playGame = gesture => {
+    const playRound = gesture => {
+        // NOTE: following returns correct result in network tab, unfamiliar with forceUpdate hook
+        const data = play(gesture);
+        result = data.result;
+
+        forceUpdate();
+
+
+
+        //  following moved here to get it working/showing on the UI
         let playerGesture = gesture;
         let result;
 
-        // // NOTE: not returning correctly and unfamiliar with why , have used logic below to make app work
-        // const data = play(gesture);
-        // result = data.result;
-        //
-        // forceUpdate();
-
-
-        //  following moved here to get it working
         const n = Math.floor(Math.random() * 5);    //  create a random number for the computer choice
 
         let computerChoices = [
@@ -174,6 +175,7 @@ export default () => {
     };
 
 
+    //  TODO, this is incorrect
     if (result) return (
         <h1>TODO: show resultsContainer</h1>
     );
@@ -203,17 +205,14 @@ export default () => {
     return (
         <main className={styles.sw}>
             <section className={styles.options}>
-                <button onClick={() => playGame("rock")}>rock</button>
-                <button onClick={() => playGame("paper")}>paper</button>
-                <button onClick={() => playGame("scissors")}>scissors</button>
-                <button onClick={() => playGame("lizard")}>lizard</button>
-                <button onClick={() => playGame("spock")}>spock</button>
+                <button onClick={() => playRound("rock")}>rock</button>
+                <button onClick={() => playRound("paper")}>paper</button>
+                <button onClick={() => playRound("scissors")}>scissors</button>
+                <button onClick={() => playRound("lizard")}>lizard</button>
+                <button onClick={() => playRound("spock")}>spock</button>
             </section>
 
-            {
-                gameResult ? <ResultContainer /> : ''
-            }
-
+            { gameResult ? <ResultContainer /> : '' }
         </main>
     );
 }
